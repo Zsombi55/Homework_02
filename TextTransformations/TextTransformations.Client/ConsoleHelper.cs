@@ -14,6 +14,8 @@ namespace TextTransformations.Client
 		public static string ReadText()
 		{
 			string s;
+
+			Console.WriteLine("Enter text, in one paragraph format, maximum 254 characters:");
 			Console.WriteLine("------------\n");
 
 			try
@@ -35,36 +37,39 @@ namespace TextTransformations.Client
 			return s;
 		}
 
-		/// <summary>
-		/// Takes a string then prints it to the standard output of the app.
-		/// </summary>
-		/// <param name="text">A string.</param>
-		public static void PrintText(string text)
+		public static int ReadIndex()
 		{
-			Console.WriteLine(text);
+			string i;
+			Console.WriteLine("Enter text character position number (index), counting from 0 :");
+
+			try
+			{
+				i = Console.ReadLine();
+				int.TryParse(i, out int result);
+				return result;	
+			}
+			catch(ArgumentException e)
+			{
+				Console.WriteLine($"\tThe given value is not an integer number, OR is larger than the int32 limit.\n{e}");
+				throw;
+			}
 		}
 
+
+		// -----COULD NOT MAKE IT WORK FROM HERE INSTEAD OF "Program.cs".-----
 		/// <summary>
 		/// Takes in a text and selected manipulation data, modifies the text accordingly then returns the result.
 		/// </summary>
 		/// <param name="input">Text to manipulate.</param>
 		/// <param name="transformationRules">Manipulation data (conditions, rules, etc. ).</param>
 		/// <returns>Altered text.</returns>
-		public static string ApplyTransformationRules(
-            string input,
-            TransformationRule[] transformationRules)
-        {
-            if (transformationRules is null)
-            {
-                return input;
-            }
+		//public static string ApplyRules(string text, FormBase[] rules)
+		//{
+		//	if (rules is null) return text;
 
-            foreach (TransformationRule rule in transformationRules)
-            {
-                input = rule.Process(input);
-            }
+		//	foreach (FormBase rule in rules) text = rule.FormingProcess(text);
 
-            return input;
-        }
+		//	return text;
+		//}
 	}
 }

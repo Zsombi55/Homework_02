@@ -17,38 +17,55 @@ namespace TextTransformations.Client
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Enter text, in one paragraph format, maximum 254 characters:");
-
 			string baseText = ConsoleHelper.ReadText();  //ConsoleHelper.PrintText(text);
 			
             // Manipulation Batch 1
-			string result1 = ConsoleHelper.ApplyTransformationRules(baseText,
-                new TransformationRule[] 
+			//string result1 = ConsoleHelper.ApplyRules(baseText,
+			string result1 = ApplyRules(baseText, rules:
+                new FormBase[] 
                 {
-                    new InsertStringTransformationRule(0, "Petre "),
-                    new DeleteTextTransformationRule("test"),
-                    new ReplaceTextTransformationRule("a", "test123")
+                    //new FormInsertSection(index: ConsoleHelper.ReadIndex(), part_a: ConsoleHelper.ReadText()),
+                    //new FormRemoveSection(part_a: ConsoleHelper.ReadText()),
+					new FormInsertSection(index: 0, part_a: "O x O x O x O "),
+                    new FormRemoveSection(part_a: "x"),
+                    new FormLoweCase()
                 });
 
             // Manipulation Batch 2
-            string result2 = ConsoleHelper.ApplyTransformationRules(baseText,
-                new TransformationRule[]
+			//string result2 = ConsoleHelper.ApplyRules(baseText,
+            string result2 = ApplyRules(baseText, rules:
+                new FormBase[]
                 {
-                    new InsertStringTransformationRule(0, "Rodica "),
-                    new ReplaceTextTransformationRule("test", "test123")
+                    new FormInsertSection(index: baseText.Length - 1, part_a: " = potato."),
+                    new FormReplaceSection(part_a: "a", part_b: "G")
                 });
 
 
-            Console.WriteLine("-------------------------------------");
-            Console.WriteLine("Modified text 1 is:");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("Modified text 1 is:\n");
             Console.WriteLine(result1);
 
-            Console.WriteLine("-------------------------------------");
-            Console.WriteLine("Modified text 2 is:");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("Modified text 2 is:\n");
             Console.WriteLine(result2);
 
 
 			Console.WriteLine("\nEnd.\n");
+		}
+
+		/// <summary>
+		/// Takes in a text and selected manipulation data, modifies the text accordingly then returns the result.
+		/// </summary>
+		/// <param name="input">Text to manipulate.</param>
+		/// <param name="transformationRules">Manipulation data (conditions, rules, etc. ).</param>
+		/// <returns>Altered text.</returns>
+		public static string ApplyRules(string text, FormBase[] rules)
+		{
+			if (rules is null) return text;
+
+			foreach (FormBase rule in rules) text = rule.FormingProcess(text);
+
+			return text;
 		}
 	}
 }

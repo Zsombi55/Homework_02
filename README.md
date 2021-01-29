@@ -10,7 +10,7 @@ The ErrorLogger has to allow for the error messages to be written: in a text fil
 
 Two pieces of information will be required as arguments for the logger: an error/ importance level (eg.: 0 - Warning, 1 - High, 2 - Critical), and a `string` containing the error message itself.
 
-* __A2 (TextTransformations),__ ***it is being reworked*** with more OOP (for first attempt look into (for first attempt look into "[Homework_02_OldVersion](https://github.com/Zsombi55/Homework_02_OldVersion)").
+* __A2 (TextTransformations),__ reworked with more OOP (for first attempt look into (for first attempt look into "[Homework_02_OldVersion](https://github.com/Zsombi55/Homework_02_OldVersion)").
 
 _As I understand the instructions:_ Get a text from the User (eg.: `string`), and perform certain manipulations on it - using as much OOP as possible.
 

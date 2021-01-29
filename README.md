@@ -1,9 +1,8 @@
 # FTIT C-Sharp Homework Assignments, second batch
-FTIT C# .NET course, s-nd homework repository.
 
 > 20210120 ~ 0203
 
-* __A1 (ErrorLogging),__ it just works, but it turned out to be witout as much OOP as required.
+* __A1 (ErrorLogging),__ reworked with more OOP (for first attempt look into "[Homework_02_OldVersion](https://github.com/Zsombi55/Homework_02_OldVersion)").
 
 _As I understand the instructions:_ Make a simple error logger library, and a console application to test it that allows the user to create a vector then prints it out.
 
@@ -11,7 +10,7 @@ The ErrorLogger has to allow for the error messages to be written: in a text fil
 
 Two pieces of information will be required as arguments for the logger: an error/ importance level (eg.: 0 - Warning, 1 - High, 2 - Critical), and a `string` containing the error message itself.
 
-* __A2 (TextTransformations),__ it just works, tried but could not use as much OOP as required.
+* __A2 (TextTransformations),__ ***it is being reworked*** with more OOP (for first attempt look into (for first attempt look into "[Homework_02_OldVersion](https://github.com/Zsombi55/Homework_02_OldVersion)").
 
 _As I understand the instructions:_ Get a text from the User (eg.: `string`), and perform certain manipulations on it - using as much OOP as possible.
 

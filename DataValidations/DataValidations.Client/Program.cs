@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * User: Zsombor
+ * Date: 2021-01-30
+ * Time: 10:57
+ * 3rd.
+ */
+
+using System;
 
 namespace DataValidations.Client
 {
@@ -7,7 +14,7 @@ namespace DataValidations.Client
 		static void Main(string[] args)
 		{
             // TODO: Move the "database" array to a separate class of its own, then use it here like variables of another classes are used.
-            //TODO: OR move to a file (txt, ini, xml) /DB then get it from there.
+            // TODO: OR move to a file (txt, ini, xml) /DB then get it from there.
 			Person[] people = new[]
             {
                 new Person
@@ -36,11 +43,11 @@ namespace DataValidations.Client
             };
 
             ProcessPeople processor = new ProcessPeople(rules:
-                new ValidatorEngine.Rules[]
+                new ValidatorEngine.Rule[]
                 {
-                    new R-NameIsValid(),
-                    new R-CNPIsValid(),
-                    new R-IsAdult()
+                    new R_NameIsValid(),
+                    new R_CNPIsValid(),
+                    new R_IsAdult()
                 });
 
             processor.Process(people);

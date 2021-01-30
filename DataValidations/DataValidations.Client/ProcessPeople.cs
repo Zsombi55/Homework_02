@@ -5,13 +5,23 @@ namespace DataValidations.Client
 {
 	public class ProcessPeople
 	{
-		public ProcessPeople(ValidationRule[] rules)
+		/// <summary>
+        /// Constructor. Allows outside "ValidationEngine" instance access.
+        /// </summary>
+        /// <param name="rules">Array of "Rule" type objects.</param>
+		public ProcessPeople(Rule[] rules)
 		{
-			ValidationEngine = new ValidatorEngine.ValidationEngine(rules);
+			V_Engine = new ValidatorEngine.ValidationEngine(rules);
 		}
 
-		public ValidatorEngine.ValidationEngine ValidationEngine { get; }
+		public ValidatorEngine.ValidationEngine V_Engine { get; }
 
+		/// <summary>
+		/// Takes an array containing personal data holding objects.
+		/// Performs content availability checks on the Array, then begins validation of its elements' contents.
+		/// Finally, it prints the results one element per line, marking which has any invalid entries.
+		/// </summary>
+		/// <param name="people">Array of Person objects, whose elements contain personal data: names, id.nr and age.</param>
 		public void Process(Person[] people)
 		{
 			if(people is null)
@@ -28,15 +38,15 @@ namespace DataValidations.Client
 
 			foreach(Person person in people)
 			{
-				bool isValid = ValidationEngine.Validate(person);
+				bool isValid = V_Engine.Validate(person);
 
 				if(isValid)
 				{
-					Console.WriteLine($"VALID: {person.FirstName} {person.LastName} | CNP: {person.CNP} | Age: {person.Age}");
+					Console.WriteLine($"\nVALID: {person.LastName}, {person.FirstName}\nCNP: {person.CNP}\nAge: {person.Age}");
 				}
 				else
 				{
-					Console.WriteLine($"INVALID: {person.FirstName} {person.LastName} | CNP: {person.CNP} | Age: {person.Age}");
+					Console.WriteLine($"\nINVALID: {person.LastName}, {person.FirstName}\nCNP: {person.CNP}\nAge: {person.Age}");
 				}
 			}
 		}

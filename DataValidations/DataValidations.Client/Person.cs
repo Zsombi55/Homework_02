@@ -10,5 +10,7 @@ namespace DataValidations.Client
 		public string CNP { get; set; }
 
 		public int Age { get; set; }
+
+		internal string Sex { get; set; }
 	}
 }

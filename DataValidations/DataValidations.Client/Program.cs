@@ -19,55 +19,50 @@ namespace DataValidations.Client
             {
                 new Person
                 {
+                    FirstName = "Verde",
+                    LastName = "Ceai",
+                    CNP = "5080917195706",
+                    Age = 17
+                },
+
+                new Person
+                {
                     FirstName = "Espresso",
                     LastName = "Cafea",
-                    CNP = "1410313510027",
+                    CNP = "1410313519090",
                     Age = 80
                 },
 
                 new Person
                 {
-                    FirstName = "Verde",
-                    LastName = "Ceai",
-                    CNP = "1300812420055",
-                    Age = 95
+                    FirstName = "Mocha",
+                    LastName = "Cafea",
+                    CNP = "2960816049410",
+                    Age = 25
                 },
 
                 new Person
                 {
                     FirstName = "Cappuccino",
                     LastName = "Cafea",
-                    CNP = "1334668580055",
+                    CNP = "1960816047300",
                     Age = 25
                 }
             };
 
-            // Validation batch 0 - use test.
-            ProcessPeople processor0 = new ProcessPeople(rules:
-                new ValidatorEngine.Rule[]
-                {
-                    new R_NameIsValid(),
-                    new R_CNPIsValid(),
-                    new R_IsAdult()
-                });
-
-            processor0.Process(people);
-            Console.WriteLine("--------------------");
-
             // Validation batch 1 - displaying all people with valid names, id.nr and being above 18 years old.
-            ProcessPeople processor1 = new ProcessPeople(rules:
+            ProcessPeople processor = new ProcessPeople(rules:
                 new ValidatorEngine.Rule[]
                 {
                     new R_NameIsValid(),
-                    new R_CNPIsValid(),
+                    new R_CNPIsValid(), // TODO: either my test cases are wrong or there is an error in this class.
                     new R_IsAdult()
                 });
-
-            processor1.Process(people);
+            processor.Process1(people);
             Console.WriteLine("--------------------");
-
+            
             // Validation batch 2 - displaying all people with valid names, id.nr, being above 18 years old, and being a male.
-            ProcessPeople processor2 = new ProcessPeople(rules:
+            processor = new ProcessPeople(rules:
                 new ValidatorEngine.Rule[]
                 {
                     new R_NameIsValid(),
@@ -75,8 +70,9 @@ namespace DataValidations.Client
                     new R_IsAdult()
                 });
 
-            processor2.Process(people);
+            processor.Process2(people);
             Console.WriteLine("--------------------");
+            
 
 			Console.WriteLine("\nEnd.\n");
 		}

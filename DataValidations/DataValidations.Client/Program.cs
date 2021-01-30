@@ -42,7 +42,8 @@ namespace DataValidations.Client
                 }
             };
 
-            ProcessPeople processor = new ProcessPeople(rules:
+            // Validation batch 0 - use test.
+            ProcessPeople processor0 = new ProcessPeople(rules:
                 new ValidatorEngine.Rule[]
                 {
                     new R_NameIsValid(),
@@ -50,7 +51,32 @@ namespace DataValidations.Client
                     new R_IsAdult()
                 });
 
-            processor.Process(people);
+            processor0.Process(people);
+            Console.WriteLine("--------------------");
+
+            // Validation batch 1 - displaying all people with valid names, id.nr and being above 18 years old.
+            ProcessPeople processor1 = new ProcessPeople(rules:
+                new ValidatorEngine.Rule[]
+                {
+                    new R_NameIsValid(),
+                    new R_CNPIsValid(),
+                    new R_IsAdult()
+                });
+
+            processor1.Process(people);
+            Console.WriteLine("--------------------");
+
+            // Validation batch 2 - displaying all people with valid names, id.nr, being above 18 years old, and being a male.
+            ProcessPeople processor2 = new ProcessPeople(rules:
+                new ValidatorEngine.Rule[]
+                {
+                    new R_NameIsValid(),
+                    new R_CNPIsValid(),
+                    new R_IsAdult()
+                });
+
+            processor2.Process(people);
+            Console.WriteLine("--------------------");
 
 			Console.WriteLine("\nEnd.\n");
 		}

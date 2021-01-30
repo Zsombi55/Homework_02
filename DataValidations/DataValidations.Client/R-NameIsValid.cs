@@ -9,7 +9,7 @@ namespace DataValidations.Client
         {
             if (input is Person p)
             {
-                R-StringIsNotNullOrEmpty rule = new R-StringIsNotNullOrEmpty();
+                R-SIsNotNullOrEmpty rule = new R-SIsNotNullOrEmpty();
                 return rule.Validate(p.FirstName) && rule.Validate(p.LastName);
             }
 

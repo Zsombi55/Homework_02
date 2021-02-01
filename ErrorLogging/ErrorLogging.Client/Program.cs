@@ -2,7 +2,7 @@
  * User: Zsombor
  * Date: 2021-01-22
  * Time: 11:45
- * 1st.
+ * 3rd.
  * --------------------------
  * Revision Date: 2021-01-28, 29
  * Revision Time: 22:38, 09:08

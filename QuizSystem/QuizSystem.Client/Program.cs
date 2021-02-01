@@ -6,6 +6,7 @@
  */
 
 using System;
+using QuizSystem.Library;
 
 namespace QuizSystem.Client
 {
@@ -13,7 +14,7 @@ namespace QuizSystem.Client
 	{
 		static void Main(string[] args)
 		{
-			Question[] quiz = new Question[]
+			Question[] questions = new Question[]
 			{
 				new Question
                 {
@@ -42,11 +43,24 @@ namespace QuizSystem.Client
                 new Question
                 {
                     Number = 4,
-                    Ask = "What is the result of the equation \"2 x 2\"? First write it with numbers then in words separated by a blank space.",
+                    Ask = "What is the result of the equation \"2 x 2\"? First write it with numbers then with words, separated by a blank space.",
                     TypeInChoice = string.Empty, // The User has to type in the answer.
                     TypeInCorrect = "4 four" // Discard casing, it matters not.
                 }
 			};
+
+
+            for(int i = 0; i < questions.Length; i++)
+            {
+                PrintQuestion(questions[i]); // One question at a time.
+
+                ValidateAnswer( ConsoleHelper.GetAnswer() ); // Get chosen or typed answer, parse & compare to "Corract" / "TypeInCorract", then return some result.
+
+                PrintResult(); // If result is not fully correct, notify User then show correct answers ??
+            }
+            
+            PrintFinalResult(); // Final score, final result ??
+
 
 			Console.WriteLine("\nEnd.\n");
 		}

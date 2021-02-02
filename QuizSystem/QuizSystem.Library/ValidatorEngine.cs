@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QuizSystem.Library
+namespace QuizSystem.Validator
 {
 	public class ValidatorEngine
 	{
@@ -16,7 +16,7 @@ namespace QuizSystem.Library
         public Rules[] Rules { get; }
 
         // Can take any kind of input (object), super generalized.
-        public bool ValidateAnswer(object input)
+        public bool Validate(object input)
 		{
 			//throw new NotImplementedException();
             foreach(Rules rule in Rules)

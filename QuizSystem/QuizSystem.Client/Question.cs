@@ -6,18 +6,18 @@ namespace QuizSystem.Client
 		// Empty constructor.
 		public Question() {}
 
-		public string QuestionType { get; set; }
+		public string QuestionType { get; internal set; }
 
-		public int Number { get; set; }
+		public int Number { get; internal set; }
 
-		public string Ask { get; set; }
+		public string Ask { get; internal set; }
 
-		public string[] Choices { get; set; }
+		public string[] Choices { get; internal set; }
 
-		public int[] Correct { get; set; }
+		public int[] Correct { get; internal set; }
 
 		public string TypeInChoice { get; set; }
 
-		public string TypeInCorrect { get; set; }
+		public string TypeInCorrect { get; internal set; }
 	}
 }

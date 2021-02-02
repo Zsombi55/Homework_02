@@ -8,11 +8,15 @@ namespace QuizSystem.Validator
 		{
 			//throw new NotImplementedException();
 
-			if (input is Question q)
-            {
-                StringRepresentsANumberRule rule = new StringRepresentsANumberRule();
-                return rule.Validate(q.Choice);
-            }
+			if (input is null)  return false;
+
+			if (input is string strIn)
+			{
+				StringIsNotNullOrEmptyRule rule = new StringIsNotNullOrEmptyRule();
+                return rule.Validate(p.FirstName) && rule.Validate(p.LastName);
+
+				return true;
+			}
 
             return false;
 		}

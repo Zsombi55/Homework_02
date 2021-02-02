@@ -6,6 +6,7 @@
  */
 
 using System;
+using QuizSystem.Validator;
 
 namespace QuizSystem.Client
 {

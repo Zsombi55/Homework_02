@@ -1,6 +1,6 @@
 ﻿using System;
-using QuizSystem.Transformators;
-using QuizSystem.Validators;
+using QuizSystem.Transformator;
+using QuizSystem.Validator;
 
 /*
  * Get and Print indormation from & to the Console.
@@ -23,6 +23,8 @@ namespace QuizSystem.Client
 
 		public static void PrintTypeQuestion(Question question)
 		{
+			if(question is null) throw new ArgumentNullException("The question object doesn't exist.", nameof(question));
+
 			Console.WriteLine($"-------------------------\n" +
 							  $"{question.Number}. {question.Ask}\n\n");
 		}

@@ -52,6 +52,12 @@ namespace QuizSystem.Client
                 }
 			};
 
+            QuizProcessor processor = new QuizProcessor(rules:
+                new Validator.Rules[]
+                {
+                    new R_ChoiceIsValid(),
+                    new R_InputIsValid()
+                });
 
             // Due to OOP it might be better to put this in another class or at least a container function ?
 
@@ -68,7 +74,9 @@ namespace QuizSystem.Client
                 else
                     ConsoleHelper.PrintTypeQuestion(questions[i]);
 
-                QuizSystem.Validators.ValidateAnswer( ConsoleHelper.GetAnswer() ); // Get chosen or typed answer, parse & compare to "Corract" / "TypeInCorract", then return some result.
+                processor.Process(questions[i]);
+
+                QuizSystem.Validator.ValidateAnswer( ConsoleHelper.GetAnswer() ); // Get chosen or typed answer, parse & compare to "Corract" / "TypeInCorract", then return some result.
 
                 ConsoleHelper.PrintResult(); // If result is not fully correct, notify User then show correct answers ??
             }

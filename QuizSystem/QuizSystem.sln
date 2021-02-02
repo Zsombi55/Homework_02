@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizSystem.Client", "QuizSystem.Client\QuizSystem.Client.csproj", "{0E448D39-F62B-47AA-A2D0-4CF9B85B639A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizSystem.Client", "QuizSystem.Client\QuizSystem.Client.csproj", "{0E448D39-F62B-47AA-A2D0-4CF9B85B639A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizSystem.Library", "QuizSystem.Library\QuizSystem.Library.csproj", "{7CA884D4-38AE-4790-8BC4-0973D0BE2D12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizSystem.Validators", "QuizSystem.Library\QuizSystem.Validators.csproj", "{7CA884D4-38AE-4790-8BC4-0973D0BE2D12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizSystem.Transformators", "QuizSystem.Transformator\QuizSystem.Transformators.csproj", "{4838ED81-D340-4363-AAEF-36942A897E1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7CA884D4-38AE-4790-8BC4-0973D0BE2D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CA884D4-38AE-4790-8BC4-0973D0BE2D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CA884D4-38AE-4790-8BC4-0973D0BE2D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4838ED81-D340-4363-AAEF-36942A897E1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4838ED81-D340-4363-AAEF-36942A897E1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4838ED81-D340-4363-AAEF-36942A897E1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4838ED81-D340-4363-AAEF-36942A897E1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

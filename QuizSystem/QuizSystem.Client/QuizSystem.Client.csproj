@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QuizSystem.Library\QuizSystem.Library.csproj" />
+    <ProjectReference Include="..\QuizSystem.Library\QuizSystem.Validators.csproj" />
+    <ProjectReference Include="..\QuizSystem.Transformator\QuizSystem.Transformators.csproj" />
   </ItemGroup>
 
 </Project>

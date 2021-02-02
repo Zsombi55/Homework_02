@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Text;
+using QuizSystem.Transformators;
+using QuizSystem.Validators;
 
 /*
  * Get and Print indormation from & to the Console.
@@ -7,10 +8,12 @@ using System.Text;
 
 namespace QuizSystem.Client
 {
-	public class ConsoleHelper
+	public static class ConsoleHelper
 	{
-		public void PrintChoiceQuestion(Question question)
+		public static void PrintChoiceQuestion(Question question)
 		{
+			if(question is null) throw new ArgumentNullException("The question object doesn't exist.", nameof(question));
+
 			Console.WriteLine($"-------------------------\n" +
 							  $"{question.Number}. {question.Ask}\n" +
 							  $"\t1.) {question.Choices[0]}\n" +
@@ -18,15 +21,26 @@ namespace QuizSystem.Client
 							  $"\t3.) {question.Choices[2]}\n");
 		}
 
-		public void PrintTypeQuestion(Question question)
+		public static void PrintTypeQuestion(Question question)
 		{
 			Console.WriteLine($"-------------------------\n" +
 							  $"{question.Number}. {question.Ask}\n\n");
 		}
 
-		public string GetAnswer()
+		public static string GetAnswer()
 		{
-			return Console.ReadLine();
+			string input = Console.ReadLine();
+			return input;
+		}
+
+		public static void PrintResult()
+		{
+			throw new NotImplementedException();
+		}
+
+		public static void PrintFinalResult()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

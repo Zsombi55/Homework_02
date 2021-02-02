@@ -6,6 +6,8 @@ namespace QuizSystem.Client
 		// Empty constructor.
 		public Question() {}
 
+		public string QuestionType { get; set; }
+
 		public int Number { get; set; }
 
 		public string Ask { get; set; }

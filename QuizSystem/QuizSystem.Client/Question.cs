@@ -8,16 +8,8 @@ namespace QuizSystem.Client
 
 		public string QuestionType { get; internal set; }
 
-		public int Number { get; internal set; }
+		public int IdNumber { get; internal set; }
 
-		public string Ask { get; internal set; }
-
-		public string[] Choices { get; internal set; }
-
-		public int[] Correct { get; internal set; }
-
-		public string TypeInChoice { get; set; }
-
-		public string TypeInCorrect { get; internal set; }
+		public string Description { get; internal set; }
 	}
 }

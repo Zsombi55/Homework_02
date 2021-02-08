@@ -36,12 +36,23 @@ namespace QuizSystem.Client
 
 				if(isValid)
 				{
-					Console.WriteLine($"VALID: {question.FirstName} {question.LastName}");
+					if(question.QuestionType == "choice")
+						if(ConsoleHelper.GetAnswer() == string.Join(" ", question.Choices.ToString().ToLower()))
+							Console.WriteLine("\nVALID");
+						else
+							Console.WriteLine($"\nINVALID. The correct answer is: " +
+								$"{string.Join(" ", question.Correct.ToString().ToLower())}\n");
+					else // Question Type = "typed"
+						if(ConsoleHelper.GetAnswer() == string.Join(" ", question.TypeInChoice.ToString().ToLower()))
+							Console.WriteLine("\nVALID");
+						else
+							Console.WriteLine($"\nINVALID. The correct answer is: " +
+								$"{string.Join(" ", question.TypeInCorrect.ToString().ToLower())}\n");
 				}
 				else
-				{
-					Console.WriteLine($"INVALID: {question.FirstName} {question.LastName}");
-				}
+					throw new ArgumentException("Client/QuizProcessor/Process: bool isValid = false !");
+				
+				return;
 			}
 		}
 	}

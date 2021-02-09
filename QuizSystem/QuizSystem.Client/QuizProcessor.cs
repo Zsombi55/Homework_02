@@ -1,9 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using QuizSystem.Validator;
 
+// Handle question and answer pairing.
 namespace QuizSystem.Client
 {
-	class QuizProcessor
+	public class QuizProcessor
+	{
+		private QuestionHelper questionHelper;
+		
+		public void Start(QuestionHelper questionHelper)
+		{
+			if (questionHelper == null)
+			{
+				throw new  ArgumentNullException(nameof(questionHelper), "ERROR.. Missing \"QuestionHelper\", cannot manage question selection.");
+			}
+
+			this.questionHelper = questionHelper;
+		}
+
+		public int GetTotalScore()
+		{
+			throw new NotImplementedException();
+
+			//ScoreCalculator.Calculate(...); // Basically 0 == max score, anything above == at least one wrong answer, cannot go negative.
+		}
+	}
+
+/*	class QuizProcessor
 	{
 		/// <summary>
 		/// Constuctor. Provides outside access.
@@ -36,18 +60,15 @@ namespace QuizSystem.Client
 
 				if(isValid)
 				{
-					if(question.QuestionType == "choice")
-						if(ConsoleHelper.GetAnswer() == string.Join(" ", question.Choices.ToString().ToLower()))
-							Console.WriteLine("\nVALID");
-						else
-							Console.WriteLine($"\nINVALID. The correct answer is: " +
-								$"{string.Join(" ", question.Correct.ToString().ToLower())}\n");
-					else // Question Type = "typed"
-						if(ConsoleHelper.GetAnswer() == string.Join(" ", question.TypeInChoice.ToString().ToLower()))
-							Console.WriteLine("\nVALID");
-						else
-							Console.WriteLine($"\nINVALID. The correct answer is: " +
-								$"{string.Join(" ", question.TypeInCorrect.ToString().ToLower())}\n");
+					if(ConsoleHelper.GetAnswer() == string.Join(" ", question.PossibleAnswers.ToString().ToLower()))
+					{
+						Console.WriteLine("\nVALID");
+					}
+					else
+					{
+						Console.WriteLine($"\nINVALID. The correct answer is: " +
+							$"{string.Join(" ", question.PossibleAnswers.ToString().ToLower())}\n");
+					}
 				}
 				else
 					throw new ArgumentException("Client/QuizProcessor/Process: bool isValid = false !");
@@ -56,4 +77,23 @@ namespace QuizSystem.Client
 			}
 		}
 	}
+	*/
 }
+
+/* Unused for number-picking questions.
+ * 
+					if(question.QuestionType == "choice")
+					{ ... }
+					else // Question Type = "typed"
+					{
+						if(ConsoleHelper.GetAnswer() == string.Join(" ", question.TypeInChoice.ToString().ToLower()))
+						{
+							Console.WriteLine("\nVALID");
+						}
+						else
+						{
+							Console.WriteLine($"\nINVALID. The correct answer is: " +
+								$"{string.Join(" ", question.TypeInCorrect.ToString().ToLower())}\n");
+						}
+					}
+*/

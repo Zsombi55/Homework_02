@@ -1,32 +1,30 @@
 ﻿using System;
-using QuizSystem.Transformator;
 using QuizSystem.Validator;
 
-/*
- * Get and Print indormation from & to the Console.
- */
-
+// Get and Print information from & to the Console.
 namespace QuizSystem.Client
 {
 	public static class ConsoleHelper
-	{
-		public static void PrintChoiceQuestion(Question question)
+	{	
+		internal static void PrintIntro()
 		{
-			if(question is null) throw new ArgumentNullException("The question object doesn't exist.", nameof(question));
-
-			Console.WriteLine($"-------------------------\n" +
-							  $"{question.Number}. {question.Ask}\n" +
-							  $"\t1.) {question.Choices[0]}\n" +
-							  $"\t2.) {question.Choices[1]}\n" +
-							  $"\t3.) {question.Choices[2]}\n");
+			Console.WriteLine("Choose the answers by their numbers, if none is found correct use \"0\".\n" +
+				"For multiple answers type each in the same line separated by blank whitespaces.\n\n" +
+				"NOTE: perfect score equals \"0\", the higher it is the more wrong choices were made!\n" +
+				"-------------------------");
 		}
 
-		public static void PrintTypeQuestion(Question question)
+		public static void PrintChoiceQuestion(Question question, Answer answers)
 		{
-			if(question is null) throw new ArgumentNullException("The question object doesn't exist.", nameof(question));
+			if(question is null) throw new ArgumentNullException(nameof(question), "The question object doesn't exist.");
 
-			Console.WriteLine($"-------------------------\n" +
-							  $"{question.Number}. {question.Ask}\n\n");
+			Console.WriteLine("-------------------------\n" +
+				$"{question.IdNumber}. {question.Description}\n");
+			//
+			for(int i = 0; i < answers.PossibleAnswer.Length; i++)
+			{
+				Console.WriteLine($"\t{i+1}.) {answers.PossibleAnswer[i]}\n");
+			}
 		}
 
 		public static string GetAnswer()
@@ -46,3 +44,14 @@ namespace QuizSystem.Client
 		}
 	}
 }
+
+/* Unused for number-picking questions.
+ * 
+		public static void PrintTypeQuestion(Question question)
+		{
+			if(question is null) throw new ArgumentNullException("The question object doesn't exist.", nameof(question));
+
+			Console.WriteLine($"-------------------------\n" +
+							  $"{question.IdNumber}. {question.Description}\n\n");
+		}
+*/

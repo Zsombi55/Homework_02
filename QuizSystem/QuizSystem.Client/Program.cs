@@ -79,13 +79,6 @@ namespace QuizSystem.Client
 				    bool isValidInput = false;
 				    do
 				    {
-                        //PSEUTO
-                        //-------
-					    // Utils.DisplayMessage
-					    // input = Console.ReadLine();
-					    // isValidInput = Utils.Validate(input);
-					    // if (isValidInput)
-                        //   next.ChosenAnswerId = Uils.TranslateAnswer(input);
 					    //-------
 				    } while(!isValidInput)
 			    }

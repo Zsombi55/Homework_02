@@ -19,14 +19,16 @@ namespace QuizSystem.Client
             string strInput = (string) input;
             
             strInput = strInput.Trim();
-
+            
+            if(strInput.Split("", ))
+            {}
             switch (strInput)
             {
-                case "A":
-                case "B":
-                case "C":
-                case "D":
-                case "EXIT":
+                case "0":
+                case "1":
+                case "2":
+                case "3":
+                case "4":
                     return true;
                 default:
                     return false;
@@ -35,7 +37,7 @@ namespace QuizSystem.Client
 
         public static int TranslateAnswer(string choice)
         {
-            switch (choice.Trim().ToUpper())
+            switch (choice.Trim())
             {
                 case "A":
                     return 1;

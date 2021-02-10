@@ -60,14 +60,14 @@ namespace QuizSystem.Client
 
 				if(isValid)
 				{
-					if(ConsoleHelper.GetAnswer() == string.Join(" ", question.PossibleAnswers.ToString().ToLower()))
+					if(ConsoleHelper.GetAnswer() == string.Join(" ", question.PossibleAnswers.PossibleAnswer.ToString().ToLower()))
 					{
 						Console.WriteLine("\nVALID");
 					}
 					else
 					{
 						Console.WriteLine($"\nINVALID. The correct answer is: " +
-							$"{string.Join(" ", question.PossibleAnswers.ToString().ToLower())}\n");
+							$"{string.Join(" ", question.PossibleAnswers.PossibleAnswer.ToString().ToLower())}\n");
 					}
 				}
 				else

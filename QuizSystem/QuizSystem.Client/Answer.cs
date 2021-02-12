@@ -17,6 +17,6 @@ namespace QuizSystem.Client
 		// Just this should be enough,
 		// Console Input is "string" type anyway,
 		// there is no need to convert to another,
-		// as long as "string" input fits the required "string" answer, everything is all right.
+		// as long as "string" input fits the required "string" answer, everything should be all right.
 	}
 }

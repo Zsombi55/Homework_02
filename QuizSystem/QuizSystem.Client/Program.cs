@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using QuizSystem.Validator;
 
 namespace QuizSystem.Client
 {
@@ -15,7 +14,6 @@ namespace QuizSystem.Client
 	{
 		static void Main(string[] args)
 		{
-            QuizProcessor quiz = new QuizProcessor();
 			List<Question> questions = new List<Question>()
 			{
 				new Question
@@ -23,13 +21,9 @@ namespace QuizSystem.Client
                     IdNumber = 1,
                     QuestionType = "nr",
                     Description = "Which of these are vegetables?",
-                    PossibleAnswers = new Answer
-                    {
-                        Id = 1,
-                        PossibleAnswer = new string[] {"Banana", "Apple", "Tomato"}, // "Tomato" botanically is a fruit, a berry plant.
-                        CorrectAnswers = "0"
+                    PossibleAnswers = new string[] {"Banana", "Apple", "Tomato"}, // "Tomato" botanically is a fruit, a berry plant.
+                    CorrectTextAnswer = "0"
                         // Non-science Users use "0" as "none", NOT as "first"; most Users begin lists with "1".
-                    }
                 },
 
                 new Question
@@ -37,12 +31,8 @@ namespace QuizSystem.Client
                     IdNumber = 2,
                     QuestionType = "nr",
                     Description = "Which of these have no curves?",
-                    PossibleAnswers = new Answer
-                    {
-                        Id = 2,
-                        PossibleAnswer = new string[] {"Cylinder, Ball", "Sphere, Semi-Circle", "Pyramid, Cube"},
-                        CorrectAnswers = "3" // Only this pair is entirely blocky.
-                    }
+                    PossibleAnswers = new string[] {"Cylinder, Ball", "Sphere, Semi-Circle", "Pyramid, Cube"},
+                    CorrectTextAnswer = "3" // Only this pair is entirely blocky.
                 },
 
                 new Question
@@ -50,76 +40,24 @@ namespace QuizSystem.Client
                     IdNumber = 3,
                     QuestionType = "nr",
                     Description = "Select all fruits.",
-                    PossibleAnswers = new Answer
-                    {
-                        PossibleAnswer = new string[] {"Carrot", "Cherry", "Tomato"},
-                        CorrectAnswers = "2 3" // "Tomato" botanically is a fruit, a berry plant.
-                    }
+                    PossibleAnswers = new string[] {"Carrot", "Cherry", "Tomato"},
+                    CorrectTextAnswer = "2 3" // "Tomato" botanically is a fruit, a berry plant.
                 }
 			};
 
-            ConsoleHelper.PrintIntro();
+
+            ConsoleHelper.PrintInstructions();
             //----------------------------------
-
-            
-		    QuestionHelper questionHelper = new QuestionHelper(questions);
-		    quiz.Start(questionHelper);
-
-		    bool thereAreMoreQuestions = true;
-		    bool userHasDecidedToExit = false;
-		    do
-		    {
-			    Question next = QuestionHelper.Next();
-			    if (next == null)
-			    {
-				    thereAreMoreQuestions = false;
-			    }
-			    else
-			    {
-				    bool isValidInput = false;
-				    do
-				    {
-					    //-------
-				    } while(!isValidInput)
-			    }
-		    } while (thereAreMoreQuestions && !userHasDecidedToExit);
-
-		    int total = quiz.GetTotalScore();
+            ConsoleHelper.PrintChoiceQuestion(questions);
+            //----------------------------------
+            string[] userAnswers = QuizHelper.GetUserChoice(questions);
+            //----------------------------------
+            int score = QuizHelper.ValidateUserAnswers(questions, userAnswers);
+            //----------------------------------
+            ConsoleHelper.PrintTotalScore(points: score, questionCount: questions.Count);
 
 
-
-            
-
-            // This would only be useful for User answer input existence (is null /empty /whitespace) validation.
-            //QuizProcessor processor = new QuizProcessor(rules: new Validator.Rules[] { new R_InputIsValid() });
-
-
-            // Due to OOP it might be better to put this in another class or at least a container function ?
-             // One question at a time.
-            for(int i = 0; i < questions.Length; i++)
-            {
-                if(questions[i] is null) throw new ArgumentNullException(nameof(questions), "There are no questions.");
-
-                if(questions[i].IdNumber < 1 || string.IsNullOrEmpty(questions[i].Description) || 
-                    questions[i].PossibleAnswers is null || questions[i].CorrectAnswers is null)
-                    throw new ArgumentException(nameof(questions), "Question elements are missing or incorrectly filled.");
-
-                if(questions[i].QuestionType == "choice")
-                    ConsoleHelper.PrintChoiceQuestion(questions[i]);
-                else
-                    ConsoleHelper.PrintTypeQuestion(questions[i]);
-
-                //processor.Process(questions[i]);
-
-                Validator.Validate( ConsoleHelper.GetAnswer() ); // Get chosen or typed answer, parse & compare to "Corract" / "TypeInCorract", then return some result.
-
-                ConsoleHelper.PrintResult(); // If result is not fully correct, notify User then show correct answers ??
-            }
-            
-            ConsoleHelper.PrintFinalResult(); // Final score, final result ??
-
-
-			Console.WriteLine("\nEnd.\n");
+            Console.WriteLine("\nEnd.\n");
 		}
 	}
 }

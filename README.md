@@ -1,6 +1,6 @@
 # FTIT C-Sharp Homework Assignments, second batch
 
-> 20210120 ~ 0203
+> 20210120 ~ 0224
 
 * __A1 (ErrorLogging),__ reworked with more OOP (for first attempt look into "[Homework_02_OldVersion](https://github.com/Zsombi55/Homework_02_OldVersion)").
 
@@ -18,7 +18,7 @@ Minimal requested transformations: replace a User specified section with another
 
 For the latter I linked a substring removal + case change, then a substring insertion + substring change.
 
-* __A3 (ValidationEngine),__ wip.
+* __A3 (ValidationEngine),__ done, with some help.
 
 _As I understand the instructions:_
 
@@ -42,4 +42,26 @@ check wether `age` is below or over `18`
 
 Has to implement at least 2 validations with varying rule-sets, eg.: all people with valid names & id.nr above 18 years old, or all people with valid names & id.nr below 18 years old who are male.
 
-* __A4 (Quizzer),__ soon.
+* __A4 (Quizzer /QuizSystem),__ done, mostly.
+
+_As I understand the instructions:_ Have a set of prepared questions with multiple possible answers stored. Have 2 sets of different combination of questions (taken from the database) ready to be listed for the User to complete. The question set is to be listed question after question, the User will introduce their chosen answer(s), finally the system prints out the results.
+
+The following has to be supported:
+
+- questions with only 1 correct choice from the presented possible answers' list,
+
+- questions with multiple correct choices at the same time from the presented possible answers' list.
+
+The questions' database definitions have to be able to contain at least the following :
+
+- a key identifier (question id);
+
+- a text description (question or instruction);
+
+- a set of possible answers;
+
+- the correct answer or set of answers (answer id).
+
+> 20210215 ~ ????
+
+* __A5 (??),__ soon.

@@ -18,7 +18,7 @@ namespace QuizSystem.Client
 		/// <summary>
 		/// 1. Declare & initialize the question database instance to be used.
 		/// 2. Declare & create a quiz from the database instance.
-		/// 3. Begin IO functions. 
+		/// 3. Begin the question-answer cycle, and the score counter. 
 		/// </summary>
 		/// <param name="args">String array: General "Main ()" parameter.</param>
 		static void Main(string[] args)
@@ -27,10 +27,17 @@ namespace QuizSystem.Client
             Quiz quiz = database.CreateQuiz();
             quiz.TakeQuiz();
 
+
 			Console.WriteLine("\nEnd.\n");
 		}
 	}
-} // TODO: expand question list; extract 2 different sets to list; .. the system selects which of the 2 by  " Random() ".
+}
+
+// TODO: Change per question validation into per choice ?
+
+// TODO: centralize generic instructions applicable to the entire quiz duration, so they only show up before the irst question, at the very beginning.
+
+// TODO: expand question list; extract 2 different sets to list; .. the system selects which of the 2 by  " Random() ".
 
 /* First working version, V_2.
  * 

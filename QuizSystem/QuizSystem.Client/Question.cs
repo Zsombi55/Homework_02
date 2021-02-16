@@ -3,8 +3,10 @@
 namespace QuizSystem.Client
 {
 	/// <summary>
-	/// Base class. All different types have & can do these.
-	/// Possible types are: where only 1 choice, or multiple choices have to be made, or even where there are no offered choices & the answer has to be typed in.
+	/// Base class. Possible type examples:
+	///		- where only 1 choice is accepted,
+	///		- where multiple choices have to be made,
+	///		- where there are no offered choices and the User has to type in the answer.
 	/// </summary>
 	public abstract class Question
 	{
@@ -19,6 +21,7 @@ namespace QuizSystem.Client
             Id = id;
             Description = description;
         }
+
 
 		/// <summary>
 		/// Gets the question identifier.
@@ -35,17 +38,14 @@ namespace QuizSystem.Client
 		/// </summary>
 		public int Points { get; protected set; }
 
-		//public string[] PossibleAnswers { get; internal set; }
-
-		//public string CorrectTextAnswer { get; internal set; }
 
 		/// <summary>
-		/// Makes the question print its text and its matching list of possible answers (options).
+		/// Makes the question print its text and its matching list of possible answers (options). Method skeleton.
 		/// </summary>
 		public abstract void Print();
 
 		/// <summary>
-		/// Validates the answer and sets the current question's points.
+		/// Validates the answer and sets the current question's points. Method skeleton.
 		/// </summary>
 		/// <param name="answer">String: User input.</param>
 		public abstract void ValidateAnswer(string answer);

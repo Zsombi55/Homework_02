@@ -33,7 +33,9 @@ namespace QuizSystem.Client
 	}
 }
 
-// TODO: Change per question validation into per choice ?
+// TODO: change per question validation into per choice ?
+
+// TODO: port the more detailed quiz user instructions section from version 2's Console Helper, to explain stuff.. like .. partial good answers still value nothing. 
 
 // TODO: centralize generic instructions applicable to the entire quiz duration, so they only show up before the irst question, at the very beginning.
 

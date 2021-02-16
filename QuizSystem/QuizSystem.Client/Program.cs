@@ -3,6 +3,9 @@
  * Date: 2021-02-01
  * Time: 15:46
  * 4th.
+ * -----------------
+ * Revised Date: 2021-02-15 , 16
+ * Revised Time: 22:00
  */
 
 using System;
@@ -12,8 +15,25 @@ namespace QuizSystem.Client
 {
 	class Program
 	{
+		/// <summary>
+		/// 1. Declare & initialize the question database instance to be used.
+		/// 2. Declare & create a quiz from the database instance.
+		/// 3. Begin IO functions. 
+		/// </summary>
+		/// <param name="args">String array: General "Main ()" parameter.</param>
 		static void Main(string[] args)
 		{
+			QuestionDB database = new QuestionDB();
+            Quiz quiz = database.CreateQuiz();
+            quiz.TakeQuiz();
+
+			Console.WriteLine("\nEnd.\n");
+		}
+	}
+} // TODO: expand question list; extract 2 different sets to list; .. the system selects which of the 2 by  " Random() ".
+
+/* First working version, V_2.
+ * 
 			List<Question> questions = new List<Question>()
 			{
 				new Question
@@ -58,27 +78,4 @@ namespace QuizSystem.Client
 
 
 			Console.WriteLine("\nEnd.\n");
-		}
-	}
-} // TODO: exand question list; extract 2 different sets to list; .. does the system select which of the 2 by random is used or the user ??
-
-/* Typed answer questions:
- * 
-                new Question
-                {
-                    QuestionType = "text",
-                    Number = 4,
-                    Description = "What is the ratio of a circle's circumference to its diameter called, and is approximately equal to \"3.14159265359\"?",
-                    TypeInChoice = string.Empty, // The User has to type in the answer.
-                    TypeInCorrect = "pi" // Discard casing, it matters not.
-                },
-
-                new Question
-                {
-                    QuestionType = "text",
-                    Number = 5,
-                    Description = "What is the result of the equation \"2 x 2\"? First write it with numbers then with words, separated by a blank space.",
-                    TypeInChoice = string.Empty, // The User has to type in the answer.
-                    TypeInCorrect = "4 four" // Discard casing, it matters not.
-                }
 */

@@ -1,47 +1,53 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 namespace QuizSystem.Client
 {
-	public class Question
+	/// <summary>
+	/// Base class. All different types have & can do these.
+	/// Possible types are: where only 1 choice, or multiple choices have to be made, or even where there are no offered choices & the answer has to be typed in.
+	/// </summary>
+	public abstract class Question
 	{
-		// TODO: Private setters so members cannot be changed after instantiation.
-
 		/// <summary>
-		/// Gets or sets the question identifier.
+		/// Constructor allowing the creation of various question types.
+		/// Each type will have to have an identifier and a text containing the question or instruction itself.
 		/// </summary>
-		public int Id { get; internal set; }
-
-		public string QuestionType { get; internal set; } // Used only if there are both number-picking ("nr") & text-typing question-answers ("text").
+		/// <param name="id">Integer: Numeric identifier.</param>
+		/// <param name="description">String: Question text.</param>
+		public Question(int id, string description)
+        {
+            Id = id;
+            Description = description;
+        }
 
 		/// <summary>
-		/// Gets or sets the question text.
+		/// Gets the question identifier.
 		/// </summary>
-		public string Description { get; internal set; }
-
-
-		//public List<Answer> PossibleAnswers { get; internal set; }
-			// If the programmer wants to add 50 possibilities let them, so long there is min. 1, all is well.
+		public int Id { get; }
 
 		/// <summary>
-		/// Gets the points taken for this question
+		/// Gets the question text.
+		/// </summary>
+		public string Description { get; }
+
+		/// <summary>
+		/// Gets the points taken for this question.
 		/// </summary>
 		public int Points { get; protected set; }
 
-		public string[] PossibleAnswers { get; internal set; }
+		//public string[] PossibleAnswers { get; internal set; }
 
-		public string CorrectTextAnswer { get; internal set; }
-
-		//public int ChosenAnswerId { get; internal set; } // Something to connect possible answers with. Is is too database like ?  May be unnecessary ?
+		//public string CorrectTextAnswer { get; internal set; }
 
 		/// <summary>
-		/// Makes the question print its text options.
+		/// Makes the question print its text and its matching list of possible answers (options).
 		/// </summary>
-		//public abstract void Print();
+		public abstract void Print();
 
 		/// <summary>
-		/// Validates the answer and sets the current question's ...
+		/// Validates the answer and sets the current question's points.
 		/// </summary>
-		/// <param name="answer">user input</param>
-		//public abstract void ValidateAnswer(string answer);
+		/// <param name="answer">String: User input.</param>
+		public abstract void ValidateAnswer(string answer);
 	}
 }

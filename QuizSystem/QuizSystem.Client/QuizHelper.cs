@@ -23,7 +23,7 @@ namespace QuizSystem.Client
 			{
 				if(questions[i] is null)  throw new ArgumentNullException(nameof(questions), "A \"question\" does not exist !");
 
-				Console.Write($"Q { questions[i].IdNumber }.: ");
+				Console.Write($"Q { questions[i].Id }.: ");
 
 				userChoices[i] = Console.ReadLine().Trim();
 			}

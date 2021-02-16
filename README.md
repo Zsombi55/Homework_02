@@ -42,7 +42,7 @@ check wether `age` is below or over `18`
 
 Has to implement at least 2 validations with varying rule-sets, eg.: all people with valid names & id.nr above 18 years old, or all people with valid names & id.nr below 18 years old who are male.
 
-* __A4 (Quizzer /QuizSystem),__ done, mostly.
+* __A4 (Quizzer /QuizSystem),__ done.
 
 _As I understand the instructions:_ Have a set of prepared questions with multiple possible answers stored. Have 2 sets of different combination of questions (taken from the database) ready to be listed for the User to complete. The question set is to be listed question after question, the User will introduce their chosen answer(s), finally the system prints out the results.
 

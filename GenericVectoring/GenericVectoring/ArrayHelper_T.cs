@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /// <summary>
 /// Sa se proiecteze o clasa generica, denumita ArrayHelper<T>, care sa implementeze urmatoarele servicii pentru lucrul cu vectori:
@@ -63,7 +60,8 @@ namespace GenericVectoring
 			get { return array.Length; }
 		}
 
-		
+
+		// TODO: this may print gibberish if the elements are not of string or a number type ?
 		/// <summary>
 		/// Prints out an array, each element in a new line. 
 		/// </summary>
@@ -73,22 +71,32 @@ namespace GenericVectoring
 			//{
 			//	Console.WriteLine(array[i]);
 			//}
-			Console.Write(string.Join("  ", array + "\n"));
+			Console.WriteLine(string.Join("  ", array) + "\n");
 		}
 
 		/// <summary>
-		/// Looks for the specified value inside the given array.
+		/// Looks for the specified value inside a target array.
 		/// </summary>
 		/// <typeparam name="T">Generic: any type desired.</typeparam>
 		/// <param name="value">Generic: a value of the desired type.</param>
 		/// <param name="array">Generic: an array of the desired type.</param>
 		/// <returns>Integer: the index of the matching value; " -1 "  if not found.</returns>
-		public int GetElementIndex<T>(T value) where T : IComparable
+		//public int GetElementIndex<T>(T value) where T : IComparable		// This was my first attempt, before reading the instructions in detail.
+		//{
+		//	for(int i = 0; i < array.Length; i++)
+		//	{
+		//		if(value.CompareTo(array[i]) == 0)
+		//		{
+		//			return i;
+		//		}
+		//	}
+		//	return -1;
+		//}
+		public int GetElementIndex<T>(T value) where T : IEquatable<T>
 		{
-			//bool found = false;
 			for(int i = 0; i < array.Length; i++)
 			{
-				if(value.CompareTo(array[i]) == 0)
+				if(value.Equals(array[i]))
 				{
 					return i;
 				}

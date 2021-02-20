@@ -31,16 +31,19 @@ namespace GenericVectoring
 			strings[3] = "dd";
 			strings[4] = "ee";
 			
-			//var ints = new ArrayHelper_T<int>(size: 5);
-			//ints = {1, 2, 3, 4, 5};
+			//var ints = new ArrayHelper_T<int>(size: 5);		// WHY DOES THIS NOT WORK ??
+			//ints = new int[] {1, 2, 3, 4, 5};
+			//ints.PrintElements();
 
 			strings.PrintElements();
-			//for(int i = 0; i < strings.Size; i++)	Console.WriteLine(string.Join(' ', strings[i]));
+			
+			int eIndex_OK = strings.GetElementIndex("cc");
+			int eIndex_FAIL = strings.GetElementIndex("c");
+			Console.WriteLine($"Checking for \"cc\": {eIndex_OK}\nChecking for \"c\": {eIndex_FAIL}");
 
-			int eIndex = strings.GetElementIndex("c");
-			Console.WriteLine(eIndex);
+			
 
-			Console.WriteLine("\nEnd.\n");
+			Console.WriteLine("\n----- End. -----\n");
 		}
 	}
 }

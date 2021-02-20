@@ -1,11 +1,8 @@
-﻿/*
- * User: Zsombor
- * Date: 2021-02-19
- * Time: 21:50
- * 5th.
- */
-
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 /// <summary>
 /// Sa se proiecteze o clasa generica, denumita ArrayHelper<T>, care sa implementeze urmatoarele servicii pentru lucrul cu vectori:
@@ -20,18 +17,16 @@ using System;
 /// </summary>
 namespace GenericVectoring
 {
-	class Program
+	public class ArrayHelper_T<T>
 	{
-		static void Main(string[] args)
+		public void Add(T value)
 		{
-			var strings = new ArrayHelper_T<string[]>();
-			strings.Add(new string[] {"t-1", "t-2", "t-3", "t-4", "t-5"});
-			
-			var ints = new ArrayHelper_T<int[]>();
-			ints.Add(new int[] {1, 2, 3, 4, 5});
+			throw new NotImplementedException();
+		}
 
-
-			Console.WriteLine("\nEnd.\n");
+		public T this[int index]
+		{
+			get { throw new NotImplementedException(); }
 		}
 	}
 }

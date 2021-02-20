@@ -24,12 +24,21 @@ namespace GenericVectoring
 	{
 		static void Main(string[] args)
 		{
-			var strings = new ArrayHelper_T<string[]>();
-			strings.Add(new string[] {"t-1", "t-2", "t-3", "t-4", "t-5"});
+			ArrayHelper_T<string> strings = new ArrayHelper_T<string>(size: 5);
+			strings[0] = "aa";
+			strings[1] = "bb";
+			strings[2] = "cc";
+			strings[3] = "dd";
+			strings[4] = "ee";
 			
-			var ints = new ArrayHelper_T<int[]>();
-			ints.Add(new int[] {1, 2, 3, 4, 5});
+			//var ints = new ArrayHelper_T<int>(size: 5);
+			//ints = {1, 2, 3, 4, 5};
 
+			strings.PrintElements();
+			//for(int i = 0; i < strings.Size; i++)	Console.WriteLine(string.Join(' ', strings[i]));
+
+			int eIndex = strings.GetElementIndex("c");
+			Console.WriteLine(eIndex);
 
 			Console.WriteLine("\nEnd.\n");
 		}

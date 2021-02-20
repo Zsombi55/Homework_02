@@ -17,16 +17,83 @@ using System.Threading.Tasks;
 /// </summary>
 namespace GenericVectoring
 {
+	/// <summary>
+	/// Generic class for creating various types of 1-dimensinsal Arrays.
+	/// </summary>
+	/// <typeparam name="T">Generic: any type desired.</typeparam>
 	public class ArrayHelper_T<T>
 	{
-		public void Add(T value)
+		private T[] array;
+
+		/// <summary>
+		/// Constructor for creating an array of type T of a certain size.
+		/// </summary>
+		/// <param name="size">Integer: length of the desired array.</param>
+		public ArrayHelper_T(int size)
 		{
-			throw new NotImplementedException();
+			array = new T[size];
 		}
 
+		/// <summary>
+		/// Indexer for a T type array.
+		/// </summary>
+		/// <param name="index">Integer: size/ length of the connected T type array.</param>
+		/// <returns>T: the value at the specified index.</returns>
+		/// <remarks>Would have used one try-catch containing the get-set with only one Ex.-throw, but the indexer only allows get-set for its first layer.</remarks>
 		public T this[int index]
 		{
-			get { throw new NotImplementedException(); }
+			get
+			{
+				try { return array[index]; }
+				catch { throw new IndexOutOfRangeException("The specified index value is either smaller or larger than the array's size."); }
+			}
+
+			set
+			{
+				try { array[index] = value; }
+				catch { throw new IndexOutOfRangeException("The specified index value is either smaller or larger than the array's size."); }
+			}
+		}
+
+		/// <summary>
+		/// Gets the size of the T type array.
+		/// </summary>
+		public int Size
+		{
+			get { return array.Length; }
+		}
+
+		
+		/// <summary>
+		/// Prints out an array, each element in a new line. 
+		/// </summary>
+		public void PrintElements()
+		{
+			//for(int i = 0; i < array.Length; i++)
+			//{
+			//	Console.WriteLine(array[i]);
+			//}
+			Console.Write(string.Join("  ", array + "\n"));
+		}
+
+		/// <summary>
+		/// Looks for the specified value inside the given array.
+		/// </summary>
+		/// <typeparam name="T">Generic: any type desired.</typeparam>
+		/// <param name="value">Generic: a value of the desired type.</param>
+		/// <param name="array">Generic: an array of the desired type.</param>
+		/// <returns>Integer: the index of the matching value; " -1 "  if not found.</returns>
+		public int GetElementIndex<T>(T value) where T : IComparable
+		{
+			//bool found = false;
+			for(int i = 0; i < array.Length; i++)
+			{
+				if(value.CompareTo(array[i]) == 0)
+				{
+					return i;
+				}
+			}
+			return -1;
 		}
 	}
 }

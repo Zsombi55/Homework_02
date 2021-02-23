@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,6 +34,7 @@ namespace GenericVectoring
 		{
 			array = new T[size];
 			//this.array = Array.Copy(array);
+			//this array = array ?? new T[0];
 		}
 
 		/// <summary>
@@ -52,15 +54,21 @@ namespace GenericVectoring
 		//		throw new IndexOutOfRangeException();
 		//	}
 		//}
-		public void Add(T[] items)
+		public void Add(T array)
 		{
 			//
 		}
 
-		//IEnumerator<T> IEnumerable<T>.GetEnumerator()
-		//{
-		//	yield break;
-		//}
+		public IEnumerator<T> GetEnumerator()
+		{
+			return ((IEnumerable<T>)array).GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return array.GetEnumerator();
+		}
+
 
 		/// <summary>
 		/// Indexer for a T type array.
@@ -116,22 +124,6 @@ namespace GenericVectoring
 		}
 
 		/// <summary>
-		/// Sorts an array in Ascending order using IComparable<T> then,
-		/// Prints out the array, in a single line, the elements Join -ed by double blank /whitespace. 
-		/// IF the array size is only 1 there is no sorting just printing with accompanying explanation.
-		/// </summary>
-		public void SortPrintArray() // where T : IComparable<T>
-		{
-			if(array.Length > 1)
-			{
-				Array.Sort<T>(array);
-				Console.WriteLine($"Sorted sub-vector: {string.Join("  ", array)} .\n");
-			}
-			else
-			Console.WriteLine($"There is only one element: {array[0]} .\n");
-		}
-
-		/// <summary>
 		/// Looks for the specified value inside a target array.
 		/// </summary>
 		/// <typeparam name="T">Generic: any type desired.</typeparam>
@@ -159,6 +151,22 @@ namespace GenericVectoring
 				}
 			}
 			return -1;
+		}
+
+		/// <summary>
+		/// Sorts an array in Ascending order using IComparable<T> then,
+		/// Prints out the array, in a single line, the elements Join -ed by double blank /whitespace. 
+		/// IF the array size is only 1 there is no sorting just printing with accompanying explanation.
+		/// </summary>
+		public void SortPrintArray() // where T : IComparable<T>
+		{
+			if(array.Length > 1)
+			{
+				Array.Sort<T>(array);
+				Console.WriteLine($"Sorted sub-vector: {string.Join("  ", array)} .\n");
+			}
+			else
+			Console.WriteLine($"There is only one element: {array[0]} .\n");
 		}
 
 		/// <summary>

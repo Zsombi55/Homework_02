@@ -25,17 +25,31 @@ namespace GenericVectoring
 		static void Main(string[] args)
 		{
 			ArrayHelper_T<string> strings = new ArrayHelper_T<string>(size: 5);
-			strings[0] = "aa";
+			//strings[0] = "aa";
+			//strings[1] = "bb";
+			//strings[2] = "cc";
+			//strings[3] = "dd";
+			//strings[4] = "ee";
+			strings[0] = "cc";
 			strings[1] = "bb";
-			strings[2] = "cc";
-			strings[3] = "dd";
-			strings[4] = "ee";
-			
-			//var ints = new ArrayHelper_T<int>(size: 5);		// WHY DOES THIS NOT WORK ??
-			//ints = new int[] {1, 2, 3, 4, 5};
+			strings[2] = "aa";
+			strings[3] = "ee";
+			strings[4] = "dd";
+
+			//var ints = new ArrayHelper_T<int>(size: 5);     // WHY DOES THIS NOT WORK ??
+			//ints = { 1, 2, 3, 4, 5 };
+			//var ints = new ArrayHelper_T<int>()
+			//{
+			//	1, 2, 3, 4, 5
+			//};
 			//ints.PrintElements();
 
+
 			strings.PrintElements();
+
+			strings.SortPrintArray();
+
+			//strings.PrintSectionElements(startIndex: 1, subLength: 3);
 			
 			int eIndex_OK = strings.GetElementIndex("cc");
 			int eIndex_FAIL = strings.GetElementIndex("c");

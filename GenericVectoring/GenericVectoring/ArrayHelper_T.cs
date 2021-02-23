@@ -19,9 +19,7 @@ namespace GenericVectoring
 	/// Generic class for creating various types of 1-dimensinsal Arrays.
 	/// </summary>
 	/// <typeparam name="T">Generic: any type desired.</typeparam>
-	public class ArrayHelper_T<T>
-	// where T : IComparable<T>
-	// , IEnumerable<T>
+	public class ArrayHelper_T<T> where T : IEnumerable<T>, IComparable<T>
 	{
 		private T[] array;
 		//private int index = 0;
@@ -37,12 +35,16 @@ namespace GenericVectoring
 			//this.array = Array.Copy(array);
 		}
 
-		// TODO: check how to use collection initializers
-		//public void Add(T size)
+		/// <summary>
+		/// Collection initializer.
+		/// </summary>
+		/// <param name="value">T: an element to be added to an array.</param>
+		/// <param name="index">Integer: array element index.</param>
+		//public void Add(T value, int index)
 		//{
-		//	if(index < array.Length)
+		//	if (index < array.Length)
 		//	{
-		//		array[index] = index;
+		//		array[index] = value;
 		//		index++;
 		//	}
 		//	else
@@ -50,26 +52,44 @@ namespace GenericVectoring
 		//		throw new IndexOutOfRangeException();
 		//	}
 		//}
+		public void Add(T[] items)
+		{
+			//
+		}
+
+		//IEnumerator<T> IEnumerable<T>.GetEnumerator()
+		//{
+		//	yield break;
+		//}
 
 		/// <summary>
 		/// Indexer for a T type array.
 		/// </summary>
 		/// <param name="index">Integer: size/ length of the connected T type array.</param>
 		/// <returns>T: the value at the specified index.</returns>
-		/// <remarks>Would have used one try-catch containing the get-set with only one Ex.-throw, but the indexer only allows get-set for its first layer.</remarks>
+		/// <remarks>Would have used one check containing the get-set with only one Ex.-throw, but the indexer only allows get-set for its first layer.</remarks>
 		public T this[int index]
 		{
 			get
 			{
-				//if(index >= 0 && index <= size) { do }else throw		// TODO: prevent exceptions not handle them !!
-				try { return array[index]; }
-				catch { throw new IndexOutOfRangeException("The specified index value is either smaller or larger than the array's size."); }
+				if(index >= 0 && index < array.Length)
+				{
+					return array[index];
+				}
+				else throw new ArgumentException("The specified index value is either smaller or larger than the array's size.", nameof(index));
 			}
 
 			set
 			{
-				try { array[index] = value; }
-				catch { throw new IndexOutOfRangeException("The specified index value is either smaller or larger than the array's size."); }
+				if(index >= 0 && index < array.Length)
+				{
+					if(array.GetType().Equals(value))
+					{
+						array[index] = value;
+					}
+					else throw new ArrayTypeMismatchException("The array's and the desired value's type do not match.");
+				}
+				else throw new ArgumentException("The specified index value is either smaller or larger than the array's size.", nameof(index));
 			}
 		}
 
@@ -148,13 +168,15 @@ namespace GenericVectoring
 		/// <param name="index">Integer: array index marker.</param>
 		/// <param name="size">Integer: size of the extracted section and size of the sub-array.</param>
 		/// <returns>T[]: the extracted sub-array.</returns>
-		public T[] GetSubArray<T>(T[] array, int index, int size)
+		public T[] GetSubArray<T>(int index, int size)
+		//public T[] GetSubArray<T>(T[] array, int index, int size) // old
 		{
-			// "size"  to  "end index" conversion :  index + size - 1  ||  max size :  array.Length - index + 1
-			// 0 1 2 3 (4) 5 6 7 (8) 9 10 ||  I = 4 , size = 5  =>>  max Sub L = 7   =>>  Sub = 5 , end I = 8
-						
 			if( ! (array is null) && (index >= 0 && index < array.Length) && (size <= (array.Length - index + 1)) )
 			{
+				//ArrayHelper_T<T> t = new ArrayHelper_T<T>(size);
+				//t = from elem in array where ;
+
+
 				T[] t = new T[size];
 				
 				Array.Copy(array, index, t, 0, size);
@@ -163,20 +185,10 @@ namespace GenericVectoring
 
 			return Array.Empty<T>();
 		}
-
-		//public IEnumerator<T> GetEnumerator()
-		//{
-		//	//
-		//}
 	}
 }
 
-/*
-Collection[] collect = { whatever };
-var sortedByStuff = from elem in collect 
-                    orderby elem.Stuff 
-                    select elem;
-Display(sortedByStuff);
-//
-Collection[] sorted = elem.OrderBy(collect => collect.Stuff).ToArray();
+/* Sub-Array size counter help
+// "size"  to  "end index" conversion :  index + size - 1  ||  max size :  array.Length - index + 1
+// 0 1 2 3 (4) 5 6 7 (8) 9 10 ||  I = 4 , size = 5  =>>  max Sub L = 7   =>>  Sub = 5 , end I = 8
  */

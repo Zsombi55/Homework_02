@@ -25,20 +25,16 @@ namespace GenericVectoring
 		static void Main(string[] args)
 		{
 			ArrayHelper_T<string> strings = new ArrayHelper_T<string>(size: 5);
-			//strings[0] = "aa";
-			//strings[1] = "bb";
-			//strings[2] = "cc";
-			//strings[3] = "dd";
-			//strings[4] = "ee";
 			strings[0] = "cc";
 			strings[1] = "bb";
 			strings[2] = "aa";
 			strings[3] = "ee";
 			strings[4] = "dd";
 
-			//var ints = new ArrayHelper_T<int>(size: 5);     // WHY DOES THIS NOT WORK ??
-			//ints = { 1, 2, 3, 4, 5 };
-			//var ints = new ArrayHelper_T<int>()
+			//ArrayHelper_T<string> strings = new ArrayHelper_T<string>()
+			//strings.Add(new [] {"cc", "bb", "aa", "ee", "dd"}) ;
+
+			//ArrayHelper_T<int> ints = new ArrayHelper_T<int>
 			//{
 			//	1, 2, 3, 4, 5
 			//};
@@ -57,11 +53,11 @@ namespace GenericVectoring
 			int sub_start_index = 1;
 			int sub_length = 3;
 			
-			ArrayHelper_T<string> sub_strings = new ArrayHelper_T<string>(sub_length);
+			//ArrayHelper_T<string> sub_strings = new ArrayHelper_T<string>(sub_length);
 			
-			sub_strings = strings.GetSubArray(array: strings, index: sub_start_index, size: sub_length);
+			var sub_strings = strings.GetSubArray<ArrayHelper_T<string>>(sub_start_index, sub_length);
 			
-			sub_strings = strings.GetSubArray<ArrayHelper_T<string>>(array: strings, index: sub_start_index, size: sub_length);
+			//var sub_strings = strings.GetSubArray<ArrayHelper_T<string>>(array: strings, index: sub_start_index, size: sub_length);
 			
 			sub_strings.SortPrintArray();
 

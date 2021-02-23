@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// Sa se proiecteze o clasa generica, denumita ArrayHelper<T>, care sa implementeze urmatoarele servicii pentru lucrul cu vectori:
@@ -18,11 +19,8 @@ namespace GenericVectoring
 	/// Generic class for creating various types of 1-dimensinsal Arrays.
 	/// </summary>
 	/// <typeparam name="T">Generic: any type desired.</typeparam>
-	public class ArrayHelper_T<T>
-	// where T : IComparable<T>
-	// : IComparable<ArrayHelper_T<T>>
-	// : IComparable<ArrayHelper_T<T>> where T : IComparable<T>
-	// : IEnumerable<T>
+	public class ArrayHelper_T<T> where T : IComparable<T>
+	// , IEnumerable<T>
 	{
 		private T[] array;
 		//private int index = 0;
@@ -97,11 +95,11 @@ namespace GenericVectoring
 		}
 
 		/// <summary>
-		/// Sorts an array using IComparable<T> then,
+		/// Sorts an array in Ascending order using IComparable<T> then,
 		/// Prints out the array, in a single line, the elements Join -ed by double blank /whitespace. 
 		/// IF the array size is only 1 there is no sorting just printing with accompanying explanation.
 		/// </summary>
-		public void SortPrintArray()
+		public void SortPrintArray() // where T : IComparable<T>
 		{
 			if(array.Length > 1)
 			{
@@ -142,43 +140,30 @@ namespace GenericVectoring
 			return -1;
 		}
 
-		public T[] GetSubArray(T[] array, int index, int size) // 0 1 2 3 (4) 5 6 7 (8) 9 10 ||  I = 4 , L = 8  =>>  S = 5
+		/// <summary>
+		/// Extracts a sub-array from an array beginning from the specified index until the specified length.
+		/// </summary>
+		/// <param name="array">T: a generic array.</param>
+		/// <param name="index">Integer: array index marker.</param>
+		/// <param name="size">Integer: size of the extracted section and size of the sub-array.</param>
+		/// <returns>T[]: the extracted sub-array.</returns>
+		public T[] GetSubArray<T>(T[] array, int index, int size)
 		{
+			// "size"  to  "end index" conversion :  index + size - 1  ||  max size :  array.Length - index + 1
+			// 0 1 2 3 (4) 5 6 7 (8) 9 10 ||  I = 4 , size = 5  =>>  max Sub L = 7   =>>  Sub = 5 , end I = 8
+						
 			if( ! (array is null) && (index >= 0 && index < array.Length) && (size <= (array.Length - index + 1)) )
 			{
-				return new T[size];
+				T[] t = new T[size];
+				
+				Array.Copy(array, index, t, 0, size);
+				return t;
 			}
 
-			return new T[0];
+			return Array.Empty<T>();
 		}
 
 		
-
-
-
-
-
-		public void PrintSectionElements<T>(int startIndex, int subLength) where T : IComparable<T>
-		{
-			if(startIndex >= 0 && subLength < array.Length)
-			{
-				int le = subLength - startIndex + 1;
-				T[] subArray = new T[le];
-				int j = -1;
-				for(int i = startIndex; i <= subLength; i++)
-				{
-					j++;
-					array.CopyTo(subArray, startIndex);  // not ok, the limit need sto be the length of the sub-array; check to be short enough to fit !!
-				}
-
-				
-			}
-		}
-
-
-
-
-
 
 		//public IEnumerator<T> GetEnumerator()
 		//{

@@ -47,15 +47,19 @@ namespace GenericVectoring
 
 			strings.PrintElements();
 
-			strings.SortPrintArray();
-
-			//strings.PrintSectionElements(startIndex: 1, subLength: 3);
-			
 			int eIndex_OK = strings.GetElementIndex("cc");
 			int eIndex_FAIL = strings.GetElementIndex("c");
-			Console.WriteLine($"Checking for \"cc\": {eIndex_OK}\nChecking for \"c\": {eIndex_FAIL}");
+			Console.WriteLine($"Checking for \"cc\": {eIndex_OK} ;\nChecking for \"c\": {eIndex_FAIL} .");
 
+			Console.WriteLine("\n----------\n");
+			strings.SortPrintArray();
 			
+			int sub_start_index = 1;
+			int sub_length = 3;
+			ArrayHelper_T<string> sub_strings = new ArrayHelper_T<string>(sub_length);
+			strings.GetSubArray(array: strings, index: sub_start_index, size: sub_length);
+
+			sub_strings.SortPrintArray();
 
 			Console.WriteLine("\n----- End. -----\n");
 		}

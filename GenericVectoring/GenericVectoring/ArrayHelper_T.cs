@@ -147,7 +147,7 @@ namespace GenericVectoring
 		/// <param name="index">Integer: array index marker.</param>
 		/// <param name="size">Integer: size of the extracted section and size of the sub-array.</param>
 		/// <returns>T[]: the extracted sub-array.</returns>
-		public T[] GetSubArray<T>(T[] array, int index, int size)
+		public T[] GetSubArray<T>(this T[] array, int index, int size)
 		{
 			// "size"  to  "end index" conversion :  index + size - 1  ||  max size :  array.Length - index + 1
 			// 0 1 2 3 (4) 5 6 7 (8) 9 10 ||  I = 4 , size = 5  =>>  max Sub L = 7   =>>  Sub = 5 , end I = 8
@@ -173,11 +173,11 @@ namespace GenericVectoring
 }
 
 /*
- BankAccount[] bankAccounts = { whatever };
-var sortedByBalance = from bankAccount in bankAccounts 
-                      orderby bankAccount.Balance 
-                      select bankAccount;
-Display(sortedByBalance);
+Collection[] collect = { whatever };
+var sortedByStuff = from elem in collect 
+                    orderby elem.Stuff 
+                    select elem;
+Display(sortedByStuff);
 //
-BankAccount[] sorted = a.OrderBy(ba => ba.Balance).ToArray();
+Collection[] sorted = elem.OrderBy(collect => collect.Stuff).ToArray();
  */

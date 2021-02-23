@@ -56,10 +56,11 @@ namespace GenericVectoring
 			
 			int sub_start_index = 1;
 			int sub_length = 3;
-			ArrayHelper_T<string> sub_strings = new ArrayHelper_T<string>(sub_length);
-			strings.GetSubArray(array: strings, index: sub_start_index, size: sub_length);
-
-			sub_strings.SortPrintArray();
+			//ArrayHelper_T<string> sub_strings = new ArrayHelper_T<string>(sub_length);
+			//strings.GetSubArray(array: strings, index: sub_start_index, size: sub_length);
+			var sub_strings = strings.GetSubArray(array: strings, index: sub_start_index, size: sub_length);
+			
+			sub_strings.SortPrintArray(); //	this fails, I believe, because the above fails.
 
 			Console.WriteLine("\n----- End. -----\n");
 		}

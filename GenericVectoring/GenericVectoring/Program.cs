@@ -24,12 +24,13 @@ namespace GenericVectoring
 	{
 		static void Main(string[] args)
 		{
-			ArrayHelper_T<string> strings = new ArrayHelper_T<string>(size: 5);
-			strings[0] = "cc";
-			strings[1] = "bb";
-			strings[2] = "aa";
-			strings[3] = "ee";
-			strings[4] = "dd";
+			ArrayHelper_T<int> ints = new ArrayHelper_T<int>(
+				new[] { 4, 5, 1, 2, 8, 3 });
+			ints.PrintElements();
+
+			ArrayHelper_T<string> strings = new ArrayHelper_T<string>(
+				new[] { "cc", "bb", "aa", "ee", "dd" });
+			strings.PrintElements();
 
 			//ArrayHelper_T<string> strings = new ArrayHelper_T<string>()
 			//strings.Add(new [] {"cc", "bb", "aa", "ee", "dd"}) ;
@@ -40,26 +41,34 @@ namespace GenericVectoring
 			//};
 			//ints.PrintElements();
 
+			int iIndex_OK = ints.GetElementIndex(8);
+			int iIndex_FAIL = ints.GetElementIndex(20);
+			Console.WriteLine($"Checking for \"cc\": {iIndex_OK} ;\nChecking for \"c\": {iIndex_FAIL} .");
 
-			strings.PrintElements();
-
-			int eIndex_OK = strings.GetElementIndex("cc");
-			int eIndex_FAIL = strings.GetElementIndex("c");
-			Console.WriteLine($"Checking for \"cc\": {eIndex_OK} ;\nChecking for \"c\": {eIndex_FAIL} .");
+			int sIndex_OK = strings.GetElementIndex("cc");
+			int sIndex_FAIL = strings.GetElementIndex("c");
+			Console.WriteLine($"Checking for \"cc\": {sIndex_OK} ;\nChecking for \"c\": {sIndex_FAIL} .");
 
 			Console.WriteLine("\n----------\n");
-			strings.SortPrintArray();
-			
+			Console.WriteLine("\nSorted Ints\n");
+			int[] sortedInts = ints.Sort(SortDirection.Descending);
+			Console.WriteLine(string.Join(", ", sortedInts));
+
+			Console.WriteLine("\n----------\n");
+			Console.WriteLine("\nSorted Strings\n");
+			string[] sortedStrings = strings.Sort(SortDirection.Ascending);
+			Console.WriteLine(string.Join(", ", sortedStrings));
+
 			int sub_start_index = 1;
 			int sub_length = 3;
-			
-			//ArrayHelper_T<string> sub_strings = new ArrayHelper_T<string>(sub_length);
-			
-			var sub_strings = strings.GetSubArray<ArrayHelper_T<string>>(sub_start_index, sub_length);
+
+            //ArrayHelper_T<string> sub_strings = new ArrayHelper_T<string>(sub_length);
+
+            string[] sub_strings = strings.GetSubArray(sub_start_index, sub_length);
+			Console.WriteLine(string.Join(", ", sub_strings));
 			
 			//var sub_strings = strings.GetSubArray<ArrayHelper_T<string>>(array: strings, index: sub_start_index, size: sub_length);
-			
-			sub_strings.SortPrintArray();
+			// sub_strings.SortPrintArray();
 
 
 
